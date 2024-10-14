@@ -17,6 +17,7 @@ pipeline {
         stage('Build with Maven') {
             steps {
                 script {
+                    // Exécutez Maven pour compiler le projet et exécuter les tests
                     sh 'mvn clean install'
                 }
             }
@@ -25,10 +26,10 @@ pipeline {
 
     post {
         success {
-            echo 'Build successful!'
+            echo 'Build successful! Tests passed!'
         }
         failure {
-            echo 'Build failed.'
+            echo 'Build failed. Please check the logs for details.'
         }
     }
 }
