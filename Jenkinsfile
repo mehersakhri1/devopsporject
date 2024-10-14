@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: 'your-credentials-id', url: 'https://github.com/username/repo.git'
+                git credentialsId: 'github-token', url: 'https://github.com/username/repo.git'
             }
         }
         stage('Build') {
