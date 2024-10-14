@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: 'github-token', url: 'https://github.com/username/repo.git'
+                git credentialsId: 'github-token', url: 'https://github.com/mehersakhri1/devopsporject.git'
             }
         }
         stage('Build') {
