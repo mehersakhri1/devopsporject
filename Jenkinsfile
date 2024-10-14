@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.8' // Le nom de votre configuration Maven dans Jenkins
+        maven 'Maven3' // Assurez-vous que ce nom correspond à celui configuré dans Jenkins
     }
     stages {
         stage('Checkout') {
