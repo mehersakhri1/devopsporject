@@ -1,33 +1,32 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven3' // Assurez-vous que ce nom correspond à celui configuré dans Jenkins
+
+    environment {
+        GIT_CREDENTIALS_ID = 'github-token'  
     }
+
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git credentialsId: 'github-token', url: 'https://github.com/mehersakhri1/devopsporject.git'
+                script {
+                    // Cloner le dépôt Git
+                    git branch: 'main', url: 'https://github.com/mehersakhri1/devopsporject.git', credentialsId: GIT_CREDENTIALS_ID
+                }
             }
         }
-        stage('Build') {
+        stage('Build with Maven') {
             steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'mvn deploy'
+                script {
+                    // Exécuter Maven pour construire le projet
+                    sh 'mvn clean install'
+                }
             }
         }
     }
+
     post {
         success {
-            echo 'Build and tests succeeded!'
+            echo 'Build successful!'
         }
         failure {
             echo 'Build failed.'
